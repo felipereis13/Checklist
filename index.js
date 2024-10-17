@@ -32,6 +32,10 @@ const cadastrarMeta = async () => {
   mensagem = "Meta cadastrada com sucesso!"
 }
 const listarMetas = async () => {
+  if(metas.length == 0) {
+    mensagem = ("Não existem metas!")
+    return
+  }
   const respostas = await checkbox({
     message:
       "Use as SETAS para mudar de meta, o ESPAÇO para marcar ou desmarcar eo ENTER para finalizar. ",
@@ -57,6 +61,11 @@ const listarMetas = async () => {
   mensagem = ("Meta(s) marcarda(s) como concluidas(s)")
 }
 const metasRealizadas = async () => {
+    if (metas.length == 0) {
+      mensagem = "Não existem metas!"
+      return
+    }
+
   const realizadas = metas.filter((meta) => {
     return meta.checked
   })
@@ -72,6 +81,11 @@ const metasRealizadas = async () => {
   })
 }
 const metasAbertas = async () => {
+    if (metas.length == 0) {
+      mensagem = "Não existem metas!"
+      return
+    }
+
   const abertas = metas.filter((meta) => {
     return meta.checked != true
   })
@@ -87,6 +101,11 @@ const metasAbertas = async () => {
   })
 }
 const deletarMetas = async () => {
+    if (metas.length == 0) {
+      mensagem = "Não existem metas!"
+      return
+    }
+    
   const metasDesmarcadas = metas.map((meta) => {
     return { value: meta.value, checked: false }
   })
